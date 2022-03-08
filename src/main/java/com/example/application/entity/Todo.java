@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-
 @Entity
 public class Todo {
 
@@ -38,7 +36,6 @@ public class Todo {
         return isCompleted;
     }
 
-    @JsonSetter("target")
     public void setId(Integer id) {
         this.id = id;
     }

@@ -32,8 +32,4 @@ public class TodoEndpoint {
     public Todo save(Todo todo) {
         return todoRepository.save(todo);
     }
-
-    public void delete(Todo todo) {
-        todoRepository.delete(todo);
-    }
 }

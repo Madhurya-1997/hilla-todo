@@ -21,14 +21,17 @@ export class TodoView extends View {
   @state()
   private todos: Todo[] = [];
   private binder = new Binder(this, TodoModel)
-
+  //   <vaadin-text-field
+  //   label="New Task"
+  //   ${field(this.binder.model.task)}
+  //   >
+  // </vaadin-text-field>
   render() {
     return html`
       <div class='form'>
         <vaadin-text-field
           label="New Task"
-          ${field(this.binder.model.task)}
-          >
+          ${field(this.binder.model.task)}'>
         </vaadin-text-field>
         <vaadin-button
           theme='primary'
@@ -48,12 +51,7 @@ export class TodoView extends View {
               
             </vaadin-checkbox>
             <span>${todo.task}</span>
-            <vaadin-button
-              theme='secondary error'
-              @click=${this.deleteTodo}
-              
-              >Delete
-            </vaadin-button>
+            
           </div>
         `)}
       </div>
@@ -79,15 +77,15 @@ export class TodoView extends View {
   async updateTodoState(todo: Todo, isCompleted: boolean) {
     const updatedTodo = { ...todo, isCompleted };
     this.todos = this.todos.map(t => t.id === todo.id ? updatedTodo : t)
-    TodoEndpoint.save(updatedTodo);
+    await TodoEndpoint.save(updatedTodo);
   }
 
-  async deleteTodo(todo: Todo) {
-    await TodoEndpoint.delete(todo);
+  // async deleteTodo(todo: Todo) {
+  //   await TodoEndpoint.delete(todo);
 
-    this.todos = this.todos.filter(t => {
-      t.id !== todo.id
-    })
-  }
+  //   this.todos = this.todos.filter(t => {
+  //     t.id !== todo.id
+  //   })
+  // }
 
 }
