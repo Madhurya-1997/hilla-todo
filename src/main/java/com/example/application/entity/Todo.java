@@ -5,12 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 public class Todo {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String task;
@@ -24,7 +26,7 @@ public class Todo {
         this.task = task;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -36,7 +38,8 @@ public class Todo {
         return isCompleted;
     }
 
-    public void setId(Long id) {
+    @JsonSetter("target")
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -33,11 +33,7 @@ public class TodoEndpoint {
         return todoRepository.save(todo);
     }
 
-    public void delete(Long id) {
-        try {
-            todoRepository.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void delete(Todo todo) {
+        todoRepository.delete(todo);
     }
 }
